@@ -1,4 +1,4 @@
-# Getting Started with Create React App Link--https://app.netlify.com/sites/tours-react-project-vipul/settings/general
+# Getting Started with Create React App Link--https://tours-react-project-vipul.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
