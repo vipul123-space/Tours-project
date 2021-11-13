@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import Tours from "./Tours";
+import Loading from "./Loading";
+const url = "https://course-api.com/react-tours-project";
 function App() {
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setData(data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(true);
+    }
+  };
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <main>
+        <Tours data={data} />
+      </main>
+    </>
   );
 }
 
